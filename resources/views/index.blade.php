@@ -54,11 +54,11 @@
 
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <button class="btn btn-outline-success" type="submit">LOGIN</button>
+                                        <button class="btn btn-success" type="submit">LOGIN / REGISTER</button>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="{{ route('login_get') }}">LOGIN</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('register_get') }}">SIGN UP</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('register_get') }}">REGISTER</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -87,9 +87,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php  $count = 1; ?>
                     @foreach (App\Models\User::all() as $item)
                         <tr>
-                            <th scope="row">{{ $item->id }}</th>
+                            <th scope="row">{{ $count++ }}</th>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->user_name }}</td>
                             <td>{{ $item->email }}</td>

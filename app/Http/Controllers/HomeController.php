@@ -51,7 +51,7 @@ class HomeController extends Controller
         // }
         $user->image_gallery = json_encode($data);
         $user->save();
-        return back()->with('success', 'Your images has been successfully');
+        return redirect(route('index'))->with('success', 'Your images has been successfully');
     }
 
     public function delete_user($id) {

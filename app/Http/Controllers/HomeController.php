@@ -29,16 +29,39 @@ class HomeController extends Controller
     }
     public function register_post(Request $request)
     {
-        $user = new User();
 
+        $this->validate($request, [
+            'filename' => 'required',
+            'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        if($request->hasfile('filename'))
+         {
+
+            foreach($request->file('filename') as $image)
+            {
+                $name=$image->getClientOriginalName();
+                $image->move(public_path().'/images/', $name);
+                $data[] = $name;
+            }
+        }
+
+
+        $user = new User();
         $user->name = $request->name;
         $user->user_name = $request->user_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->my_file = $request->my_file;
-
+        // if($request->file('my_file'))
+        // {
+        //     $image = $request->file('my_file');
+        //     $image_name = uniqid() .'.'. $image->extension();
+        //     $image->move('./image', $image_name);
+        //     $user->image_gallery = $image_name;
+        // }
+        $user->image_gallery = json_encode($data);
         $user->save();
-        return redirect(route('index'));
+        return back()->with('success', 'Your images has been successfully');
     }
 
 

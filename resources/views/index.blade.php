@@ -82,15 +82,18 @@
                         <th scope="col">Name</th>
                         <th scope="col">User Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Images</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    @foreach (App\Models\User::all() as $item)
+                        <tr>
+                            <th scope="row">{{ $item->id }}</th>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->user_name }}</td>
+                            <td>{{ $item->email }}</td>
+                        </tr>
+                    @endforeach
 
                 </tbody>
             </table>

@@ -26,4 +26,4 @@ Route::get('/login', [HomeController::class, 'login_get'])->name('login_get');
 
 // Customer register form
 Route::get('/register', [HomeController::class, 'register_get'])->name('register_get');
-// Route::post('/register', [HomeController::class, 'register_post'])->name('register_post');
+Route::post('/register', [HomeController::class, 'register_post'])->name('register_post');

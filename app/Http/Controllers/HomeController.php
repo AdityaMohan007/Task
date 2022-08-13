@@ -13,16 +13,7 @@ class HomeController extends Controller
         return view('index');
     }
 
-    public function login_get()
-    {
-        return view('login');
-    }
-    public function login_post()
-    {
-
-    }
-
-
+    // Register form
     public function register_get()
     {
         return view('register');
@@ -37,7 +28,6 @@ class HomeController extends Controller
 
         if($request->hasfile('filename'))
          {
-
             foreach($request->file('filename') as $image)
             {
                 $name=$image->getClientOriginalName();
@@ -64,7 +54,15 @@ class HomeController extends Controller
         return back()->with('success', 'Your images has been successfully');
     }
 
+    // Login form
+    public function login_get()
+    {
+        return view('login');
+    }
+    public function login_post()
+    {
 
+    }
 
 
 }

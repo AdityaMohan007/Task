@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     // Login form
-    public function login_form_get() {
+    public function login_get()
+    {
+
         if (Auth::user()) {
             return redirect(route('dashboard.dashboard_get'));
         }
@@ -16,7 +18,7 @@ class LoginController extends Controller
             return view('login');
         }
     }
-    public function login_form_post(Request $request) {
+    public function login_post(Request $request) {
         $credentials = $request->only('email','password');
         if (Auth::attempt($credentials)) {
             return redirect(route('dashboard.dashboard_get'));

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Login form
-Route::get('/login', [HomeController::class, 'login_get'])->name('login_get');
-Route::post('/login', [HomeController::class, 'login_post'])->name('login_post');
+Route::get('/login', [LoginController::class, 'login_get'])->name('login_get');
+Route::post('/login', [LoginController::class, 'login_post'])->name('login_post');
 
 // Customer register form
 Route::get('/register', [HomeController::class, 'register_get'])->name('register_get');
@@ -38,7 +39,11 @@ Route::group(['middleware'=>['auth']], function()
         // user dashboard
         Route::get('/',[DashboardController::class, 'dashboard_get'])->name('dashboard_get');
 
-        // admin profile
-        Route::get('/admin/profile', [App\Http\Controllers\Admin\AdminController::class, 'admin_profile'])->name('admin_profile');
+
+        // logout
+        Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
     });
 });
+
+// delete user
+Route::get('delete/{id}', [HomeController::class, 'delete_user'])->name('delete_user');

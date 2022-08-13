@@ -54,14 +54,10 @@ class HomeController extends Controller
         return back()->with('success', 'Your images has been successfully');
     }
 
-    // Login form
-    public function login_get()
-    {
-        return view('login');
-    }
-    public function login_post()
-    {
-
+    public function delete_user($id) {
+        $user = User::find($id);
+        $user->delete();
+        return redirect(route('index'));
     }
 
 

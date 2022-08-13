@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function dashboard_get() {
+    public function dashboard_get()
+    {
         if (Auth::user()->role == 'admin') {
             return view('Dashboard.admin');
         }
@@ -21,7 +22,11 @@ class DashboardController extends Controller
 
 
 
-
+    // logout
+    public function logout() {
+        Auth::logout();
+        return redirect(route('login_get'));
+    }
 
 
 }

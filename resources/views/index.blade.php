@@ -83,7 +83,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">User Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Images</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,7 +94,7 @@
                             <td>{{ $item->user_name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>
-                                <img src="{{ asset('image/'.$item->image_gallery) }}" width="70px" height="70px" alt="img">
+                                <a href="{{ route('delete_user', $item->id) }}" class=""><button class="btn btn-outline-danger">Delete</button></a>
                             </td>
                         </tr>
                     @endforeach
